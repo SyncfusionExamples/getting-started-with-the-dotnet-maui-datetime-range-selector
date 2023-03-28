@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sf="clr-namespace:Syncfusion.Maui.Sliders;assembly=Syncfusion.Maui.Sliders"
+             xmlns:charts="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
+             xmlns:local="clr-namespace:MauiProject"
+             x:Class="MauiProject.MainPage">
+
+    <sf:SfDateTimeRangeSelector ShowLabels="True"
+                                ShowTicks="True"
+                                ShowDividers="True"
+                                MinorTicksPerInterval="1"
+                                StepDuration="0,2"
+                                IsInversed="True"
+                                HeightRequest="210"
+                                Minimum="2022-01-01"
+                                Maximum="2023-03-01"
+                                RangeStart="2022-03-01"
+                                RangeEnd="2023-01-01"
+                                IntervalType="Months"
+                                Interval="2"
+                                DateFormat="MMM yy">
+        <sf:SfDateTimeRangeSelector.DividerStyle>
+            <sf:SliderDividerStyle ActiveRadius="4" InactiveRadius="6"/>
+        </sf:SfDateTimeRangeSelector.DividerStyle>
+        <sf:SfDateTimeRangeSelector.Tooltip>
+            <sf:SliderTooltip />
+        </sf:SfDateTimeRangeSelector.Tooltip>
+        <charts:SfCartesianChart>
+
+            <charts:SfCartesianChart.BindingContext>
+                <local:DataViewModel/>
+            </charts:SfCartesianChart.BindingContext>
+
+            <charts:SfCartesianChart.XAxes>
+                <charts:DateTimeAxis IsVisible="False"
+                                    ShowMajorGridLines="False" />
+            </charts:SfCartesianChart.XAxes>
+
+            <charts:SfCartesianChart.YAxes>
+                <charts:NumericalAxis IsVisible="False"
+                                     ShowMajorGridLines="False" />
+            </charts:SfCartesianChart.YAxes>
+
+            <charts:SfCartesianChart.Series>
+                <charts:SplineAreaSeries ItemsSource="{Binding Data}"
+                                        XBindingPath="X"
+                                        YBindingPath="Y">
+                </charts:SplineAreaSeries>
+            </charts:SfCartesianChart.Series>
+
+        </charts:SfCartesianChart>
+    </sf:SfDateTimeRangeSelector>
+    
+</ContentPage>
